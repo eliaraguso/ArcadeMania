@@ -7,9 +7,11 @@ const cellSigns = [];
 for (let i = 0; i < cells.length; i++) {
     const cell = cells[i];
 
-    cell.addEventListener("click", function () {
+    cell.addEventListener('click', function () {
+        // console.log(`Hai cliccato la cella ${i}`);
 
         if (cellSigns[i]) {
+            // console.log('Questa cella è già cliccata');
             return;
         }
 
@@ -17,21 +19,20 @@ for (let i = 0; i < cells.length; i++) {
 
         let sign;
         if (turn % 2 === 0) {
-            sign = "O"
+            sign = 'O';
         } else {
-            sign = "X"
+            sign = 'X';
         }
 
-
-        cell.innerHTML = sign;
+        cell.innerText = sign;
         cellSigns[i] = sign;
+        // console.table(cellSigns);
 
         let hasWon = checkVictory();
 
         if (hasWon) {
             showAlert(`${sign} ha vinto!`);
-        }
-        else if (turn === 9) {
+        } else if (turn === 9) {
             showAlert('pareggio');
         }
     })
@@ -51,17 +52,17 @@ function checkVictory() {
     ];
 
     for (let i = 0; i < winningCombinations.length; i++) {
-
         const combination = winningCombinations[i];
 
         const a = combination[0];
         const b = combination[1];
         const c = combination[2];
 
-        if (cellSigns[a] && cellSigns[a] === cellSigns[b] && cellSigns[c]) {
+
+        if (cellSigns[a] && cellSigns[a] === cellSigns[b] && cellSigns[b] === cellSigns[c]) {
+            // console.log(`Trovata combinazione vincente: ${a} ${b} ${c}`);
             return true;
         }
-
     }
 
     return false;
