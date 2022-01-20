@@ -5,6 +5,9 @@
 #grid {
     height: calc(var(--card-size) * 3);
     width: calc(var(--card-size) * 4);
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 .card {
